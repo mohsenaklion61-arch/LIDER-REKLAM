@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Lider Reklam — Türkiye genelinde işletme ve hizmet rehberi.">
+  <title>Lider Reklam | İşletme ve Hizmet Rehberi</title>
+  <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <script src="config.js"></script>
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#"><span class="brand-icon">↗</span><span>LİDER <b>REKLAM</b><small data-i18n="tagline">İşletme ve Hizmet Rehberi</small></span></a>
+    <div class="head-actions">
+      <button id="lang-tr" class="lang active" type="button">Türkçe</button>
+      <button id="lang-fa" class="lang" type="button">فارسی</button>
+      <a class="button button-gold" href="#submit" data-i18n="addListing">Ücretsiz ilan ver</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow" data-i18n="eyebrow">TÜRKİYE GENELİNDE • TÜRKÇE & فارسی</p>
+        <h1 data-i18n="heroTitle">İşletmenizi doğru müşterilerle buluşturun.</h1>
+        <p class="hero-sub" data-i18n="heroText">İşletmeleri ve yerel hizmetleri keşfedin, ücretsiz ilanınızı gönderin.</p>
+        <a class="button button-gold" href="#submit" data-i18n="heroCta">İlanınızı gönderin <span>↗</span></a>
+      </div>
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-circle"></div><div class="art-card card-one">✦ <span>İŞİNİZİ BÜYÜTÜN</span></div>
+        <div class="art-card card-two"><span class="mini-dot"></span> Yeni müşteriler</div>
+        <div class="art-card card-three">L<span>R</span></div>
+      </div>
+    </section>
+
+    <section class="search-section">
+      <div class="section-heading"><div><p class="eyebrow" data-i18n="explore">KEŞFET</p><h2 data-i18n="categoriesTitle">Hizmet kategorileri</h2></div><p data-i18n="categoriesText">Türkiye'nin dört bir yanından işletmeler</p></div>
+      <div class="category-grid" id="categories">
+        <button class="category" data-category="shops"><span>▦</span><b data-i18n="catShops">Mağazalar</b><small data-i18n="catShopsSub">Mağaza ve perakende</small></button>
+        <button class="category" data-category="technical"><span>⚒</span><b data-i18n="catTechnical">Teknik hizmetler</b><small data-i18n="catTechnicalSub">Tamir ve bakım</small></button>
+        <button class="category" data-category="food"><span>♨</span><b data-i18n="catFood">Restoran ve yemek</b><small data-i18n="catFoodSub">Yeme içme</small></button>
+        <button class="category" data-category="transport"><span>↗</span><b data-i18n="catTransport">Nakliye</b><small data-i18n="catTransportSub">Taşıma ve lojistik</small></button>
+        <button class="category" data-category="beauty"><span>✂</span><b data-i18n="catBeauty">Güzellik</b><small data-i18n="catBeautySub">Kuaför ve bakım</small></button>
+        <button class="category" data-category="property"><span>⌂</span><b data-i18n="catProperty">Emlak</b><small data-i18n="catPropertySub">Emlak hizmetleri</small></button>
+        <button class="category" data-category="education"><span>▤</span><b data-i18n="catEducation">Eğitim</b><small data-i18n="catEducationSub">Kurs ve özel ders</small></button>
+        <button class="category" data-category="other"><span>＋</span><b data-i18n="catOther">Diğer hizmetler</b><small data-i18n="catOtherSub">Diğer işletmeler</small></button>
+      </div>
+    </section>
+
+    <section class="listings-section">
+      <div class="section-heading"><div><p class="eyebrow" data-i18n="directory">REHBER</p><h2 data-i18n="listingsTitle">Öne çıkan işletmeler</h2></div></div>
+      <div class="filters">
+        <input id="search" type="search" data-i18n-placeholder="searchPlaceholder" placeholder="İşletme, hizmet veya şehir ara…">
+        <select id="city"><option value="" data-i18n="allCities">Tüm şehirler</option></select>
+        <button class="button button-dark" id="searchBtn" data-i18n="searchBtn">Ara</button>
+      </div>
+      <div id="listing-grid" class="listing-grid"><div class="empty-state" data-i18n="loading">İlanlar yükleniyor…</div></div>
+      <p id="listing-note" class="muted" data-i18n="approvedOnly">Yalnızca yönetici tarafından onaylanan ilanlar yayınlanır.</p>
+    </section>
+
+    <section class="submit-section" id="submit">
+      <div class="submit-intro">
+        <p class="eyebrow" data-i18n="freeListing">ÜCRETSİZ İLAN</p>
+        <h2 data-i18n="submitTitle">İşletmenizi tanıtın.</h2>
+        <p data-i18n="submitText">Formu doldurun. İlanınız yönetici kontrolünden sonra yayınlanır.</p>
+        <ul><li data-i18n="benefitOne">✓ Türkiye genelinde görünürlük</li><li data-i18n="benefitTwo">✓ Türkçe ve Farsça ziyaretçiler</li><li data-i18n="benefitThree">✓ Yayın öncesi yönetici kontrolü</li></ul>
+      </div>
+      <form id="listing-form" class="listing-form">
+        <label><span data-i18n="businessName">İşletme adı *</span><input name="business_name" required maxlength="100" placeholder="Örn. Yıldız Teknik Servis"></label>
+        <div class="form-row">
+          <label><span data-i18n="category">Kategori *</span><select name="category" required id="form-category">
+            <option value="" data-i18n="chooseCategory">Kategori seçin</option>
+            <option value="shops" data-i18n="catShops">Mağazalar</option><option value="technical" data-i18n="catTechnical">Teknik hizmetler</option><option value="food" data-i18n="catFood">Restoran ve yemek</option><option value="transport" data-i18n="catTransport">Nakliye</option><option value="beauty" data-i18n="catBeauty">Güzellik</option><option value="property" data-i18n="catProperty">Emlak</option><option value="education" data-i18n="catEducation">Eğitim</option><option value="other" data-i18n="catOther">Diğer hizmetler</option>
+          </select></label>
+          <label><span data-i18n="cityLabel">Şehir *</span><input name="city" required maxlength="70" placeholder="İstanbul"></label>
+        </div>
+        <label><span data-i18n="description">Hizmet açıklaması *</span><textarea name="description" required rows="4" maxlength="1500" placeholder="Hizmetlerinizi kısaca anlatın…"></textarea></label>
+        <div class="form-row">
+          <label><span data-i18n="phone">Telefon</span><input name="phone" type="tel" maxlength="40" placeholder="+90 …"></label>
+          <label><span data-i18n="whatsapp">WhatsApp</span><input name="whatsapp" type="tel" maxlength="40" placeholder="+90 …"></label>
+        </div>
+        <label><span data-i18n="website">Web sitesi (isteğe bağlı)</span><input name="website" type="url" maxlength="250" placeholder="https://…"></label>
+        <label><span data-i18n="contactName">İletişim adı *</span><input name="contact_name" required maxlength="100"></label>
+        <label class="consent"><input name="consent" type="checkbox" required><span data-i18n="consent">İlan bilgilerimin incelenmesini ve onaylandıktan sonra yayınlanmasını kabul ediyorum. *</span></label>
+        <button class="button button-gold submit-button" type="submit" data-i18n="submitBtn">İlanı incelemeye gönder</button>
+        <p id="form-message" role="status" class="form-message"></p>
+      </form>
+    </section>
+  </main>
+
+  <footer><a class="brand footer-brand" href="#"><span class="brand-icon">↗</span><span>LİDER <b>REKLAM</b><small data-i18n="tagline">İşletme ve Hizmet Rehberi</small></span></a><p data-i18n="footerText">Türkiye genelinde işletme ve hizmetleri keşfedin.</p><small>© <span id="year"></span> Lider Reklam</small></footer>
+  <script src="app.js"></script>
+</body>
+</html>
